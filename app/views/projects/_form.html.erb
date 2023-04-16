@@ -1,22 +1,24 @@
 <%= form_for @project do |f| %>
- <div class="field">
-   <%= f.label :name %>
-   <br/>
-   <%= f.text_field :name %>
- </div>
- <div class="field">
-   <%= f.label :description %>
-   <br/>
-   <%= f.text_field :description %>
- </div>
- <h3>Tasks</h3>
- <div id='tasks'>
-   <%= f.fields_for :tasks do |task| %>
-     <%= render 'task_fields', :f => task %>
-   <% end %>
-   <div class='links'>
-     <%= link_to_add_association 'add task', f, :tasks %>
-   </div>
- </div>
- <%= f.submit 'Save' %>
+  <div class="form-group">
+    <%= f.label :名前 %>
+    <%= f.text_field :name, class: 'form-control col-md-6' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :概要 %>
+    <%= f.text_field :description, class: 'form-control col-md-6' %>
+  </div>
+  <h3>タスク</h3>
+  
+  <div id='tasks'>
+    <%= f.fields_for :tasks do |task| %>
+      <%= render 'task_fields', :f => task %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'タスクを追加', f, :tasks, class: 'btn btn-secondary mt-2' %>
+    </div>
+  </div>
+  
+  <div class="form-group mt-3">
+    <%= f.submit '保存', class: 'btn btn-primary' %>
+  </div>
 <% end %>
